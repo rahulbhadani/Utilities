@@ -12,8 +12,8 @@ echo "Root privilege provided, prceeding ..."
 echo "#############################################################################################################################"
 echo " ... Installing helpful softwares"
 apt-get update
-apt-get install subversion git vim libpcap0.8-dev libusb-dev libspnav-dev libbluetooth-dev libcwiid-dev qt4-default libgcrypt20 libgcrypt20-dev valgrind libgsl-dev gsl-bin texlive-full texmaker bleachbit libpangox-1.0-dev libopenscenegraph-dev libosgearth-dev default-jre default-jdk -y
-apt-get install -y 
+apt-get install subversion git vim libpcap0.8-dev libusb-dev libspnav-dev libbluetooth-dev libcwiid-dev qt4-default libgcrypt20 libgcrypt20-dev valgrind libgsl-dev gsl-bin texlive-full texmaker bleachbit libpangox-1.0-dev libopenscenegraph-dev libosgearth-dev default-jre default-jdk ctags rpm alien dpkg-dev debhelper npm nmap -y
+
 
 echo "#############################################################################################################################"
 echo "...Installing ROS"
