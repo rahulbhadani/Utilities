@@ -16,7 +16,57 @@ else
 	dir="$dir*"
 fi
 
+echo "Directory is: [$dir]"
+
 # Loop all sub-directories
+
+
+check_git_status(){
+
+    echo -en "\033[0;35m"
+    echo "$1"
+    echo -en "\033[0m"
+
+    mod=0
+    cd $f
+
+    # Check branch
+    echo -en "\e[46m"
+    git status | head -n1
+    echo -en "\e[49m"
+
+
+    # Check for modified files
+    if [ $(git status | grep modified -c) -ne 0 ]
+    then
+	    mod=1
+	    echo -en "\e[45m"
+	    echo "Modified files"
+	    echo -en "\e[49m"
+    fi
+
+    # Check for untracked files
+    if [ $(git status | grep Untracked -c) -ne 0 ]
+    then
+	    mod=1
+	    echo -en "\033[0;31m"
+	    echo "Untracked files"
+	    echo -en "\033[0m"
+    fi
+
+    # Check if everything is peachy keen
+    if [ $mod -eq 0 ]
+    then
+	    echo "Nothing to commit"
+    fi
+
+    cd ../
+
+    echo
+}
+
+level=4
+
 for f in $dir
 do
 	# Only interested in directories
@@ -26,46 +76,24 @@ do
 	if [ -d "$f/.git" ]
 	then
 
-		echo -en "\033[0;35m"
-		echo "${f}"
-		echo -en "\033[0m"
+        check_git_status $f
+		
+    else
+        echo "Subdir is : $f"
+        subdir="$f/*"
+        for f1 in $subdir
+        do
+            # Only interested in directories
+            [ -d "${f1}" ] || continue
+            # Check if directory is a git repository
+	        if [ -d "$f1/.git" ]
+	        then
+	            echo "Level 2"
+                echo "Checking Git Status For: <<$f1>>"
+                check_git_status $f1
+            fi
+        done
 
-		mod=0
-		cd $f
-
-		# Check branch
-		echo -en "\e[46m"
-		git status | head -n1
-		echo -en "\e[49m"
-
-
-		# Check for modified files
-		if [ $(git status | grep modified -c) -ne 0 ]
-		then
-			mod=1
-			echo -en "\e[45m"
-			echo "Modified files"
-			echo -en "\e[49m"
-		fi
-
-		# Check for untracked files
-		if [ $(git status | grep Untracked -c) -ne 0 ]
-		then
-			mod=1
-			echo -en "\033[0;31m"
-			echo "Untracked files"
-			echo -en "\033[0m"
-		fi
-
-		# Check if everything is peachy keen
-		if [ $mod -eq 0 ]
-		then
-			echo "Nothing to commit"
-		fi
-
-		cd ../
-
-		echo
 	fi
 
 done
