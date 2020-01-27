@@ -53,6 +53,17 @@ check_git_status(){
         
     fi
 
+    # Check for pending push
+    if [ $(git status | grep 'publish your local' -c) -ne 0 ]
+    then
+        mod=1
+
+        echo -e "\e[41m"
+        echo -e "\033[45mCommits done but push pending\e[0m"
+
+    fi
+
+
     # Check if everything is peachy keen
     if [ $mod -eq 0 ]
     then
@@ -101,7 +112,6 @@ level=3
 
 check_status_recursive()
 {
-    
     if [ "$2" -eq "$level" ] 
     then
         return
