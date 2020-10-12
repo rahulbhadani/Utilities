@@ -1,0 +1,1 @@
+ffmpeg -i /home/ivory/Videos/followerstopper_trajectory_replication_catvehicle.mp4 -ss 00:07:10 -to 00:08:23 -c:v copy -c:a copy /home/ivory/Videos/followerstopper_trajectory_replication_catvehicle_trim.mp4

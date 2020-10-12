@@ -1,0 +1,1 @@
+ffmpeg -ss 0 -t 18 -i /home/ivory/Videos/followerstopper_trajectory_replication_catvehicle_trim_4x.mp4 -vf "fps=20,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 /home/ivory/Videos/followerstopper_trajectory_replication_catvehicle_trim_4x_gif.gif
