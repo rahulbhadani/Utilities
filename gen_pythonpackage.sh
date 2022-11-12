@@ -18,7 +18,7 @@ else
 fi
 
 touch $folder_name/$package/LICENSE
-echo -e "License: MIT License Copyright $author, $org . Initial Date: $dt
+echo -e "License: MIT License (c) Copyright $author, $org . Initial Date: $dt
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
 software and associated documentation files (the 'Software'), to deal in the Software
 without restriction, including without limitation the rights to use, copy, modify,
@@ -66,7 +66,7 @@ if [ -f $folder_name/$package/README.md ]; then
     echo "README exists. Not creating."
 else
     touch $folder_name/$package/README.md
-    echo -e "# $package\n\n Copyright $author" >>  $folder_name/$package/README.md
+    echo -e "# $package\n\n(c) Copyright $author" >>  $folder_name/$package/README.md
 fi
 
 # Create a CHANGELOG
