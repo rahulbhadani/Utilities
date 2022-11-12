@@ -66,7 +66,7 @@ if [ -f $folder_name/$package/README.md ]; then
     echo "README exists. Not creating."
 else
     touch $folder_name/$package/README.md
-    echo -e "# $package\n\n(c) Copyright $author" >>  $folder_name/$package/README.md
+    echo -e "# $package\n\n(c) $author" >>  $folder_name/$package/README.md
 fi
 
 # Create a CHANGELOG
